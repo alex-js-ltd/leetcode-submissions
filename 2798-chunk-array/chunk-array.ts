@@ -5,23 +5,11 @@ function chunk(arr: Obj[], size: number): Obj[][] {
 
     const res = [];
 
-    let chunk = [];
+    for(let i = 0; i < arr.length; i += size) {
 
-    arr.forEach((el) => {
-
-        chunk.push(el);
-
-        if(chunk.length === size) {
-            res.push(chunk);
-            chunk = [];
-        }
-
-    
-    });
-
-    if(chunk.length !== 0) {
-        res.push(chunk);
+        res.push(arr.slice(i, i + size));
     }
-    
+
     return res;
+    
 };
