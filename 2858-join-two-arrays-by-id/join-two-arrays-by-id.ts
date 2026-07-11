@@ -8,10 +8,6 @@ function join(arr1: ArrayType[], arr2: ArrayType[]): ArrayType[] {
 
     for(let i = 0; i < arr1.length; i++) {
 
-        if(!seen.has(arr1[i].id)) {
-            seen.set(arr1[i].id, {});
-        }
-
         seen.set(arr1[i].id, {...arr1[i]});
     }
 
