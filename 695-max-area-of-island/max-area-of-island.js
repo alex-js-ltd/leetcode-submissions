@@ -11,11 +11,11 @@ var maxAreaOfIsland = function(grid) {
     if(grid.length === 0) {
         return 0;
     }
-
+    
     const rows = grid.length;
     const cols = grid[0].length;
 
-    let maxCount = 0;
+    let maxArea = 0;
 
     function dfs(r, c) {
 
@@ -27,26 +27,29 @@ var maxAreaOfIsland = function(grid) {
             return 0;
         }
 
+        if(grid[r][c] !== 1) {
+            return;
+        }
+
         grid[r][c] = 0;
 
-        return (1 + dfs(r, c + 1) +
-                    dfs(r, c - 1) +
-                    dfs(r + 1, c) +
-                    dfs(r - 1, c)
-        );
+
+        return ( 1 + dfs(r+1,c) + dfs(r-1,c) + dfs(r,c+1) + dfs(r, c-1) );
     }
+
 
     for(let r = 0; r < rows; r++) {
 
         for(let c = 0; c < cols; c++) {
 
             if(grid[r][c] === 1) {
-                const count = dfs(r, c);
-                maxCount = Math.max(maxCount, count);
-            }
 
+                const area = dfs(r, c);
+
+                maxArea = Math.max(maxArea, area);
+            }
         }
     }
 
-    return maxCount;
+    return maxArea;
 };
