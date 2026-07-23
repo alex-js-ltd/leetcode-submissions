@@ -34,13 +34,17 @@ var topKFrequent = function(nums, k) {
 
         const bucket = buckets[i];
 
-        for(let k = 0; k < bucket.length; k++) {
+        for(const num of bucket) {
 
-            res.push(bucket[k]);
+            res.push(num);
+
+            if(res.length === k) {
+                return res;
+            }
         }
 
 
     }
 
-    return res.slice(0, k);
+    return res;
 };
